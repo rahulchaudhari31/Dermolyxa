@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141210;
+    --gold: #d4af37;
+    --gold-light: #f5d77a;
+    --gold-dark: #b8860b;
+    --ink: #f5f1e8;
+    --muted: #b6b1a6;
+    --ivory: #faf7f0;
+  }
+
+  * {
+    @apply border-gold/10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #faf7f0;
+  }
+
+  /* Thin luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #b8860b, #d4af37);
+    border-radius: 9999px;
+    border: 2px solid #0a0a0a;
+  }
+
+  /* Visible keyboard focus for interactive elements that opt out of the default */
+  :where(a, button, summary, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid rgba(212, 175, 55, 0.8);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background-image: theme("backgroundImage.gold-text");
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(212, 175, 55, 0.7),
+      transparent
+    );
+  }
+
+  .noise-overlay {
+    background-image: radial-gradient(
+        circle at 50% 0%,
+        rgba(212, 175, 55, 0.08),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 100% 100%,
+        rgba(184, 134, 11, 0.06),
+        transparent 45%
+      );
+  }
+}
